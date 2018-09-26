@@ -6,9 +6,9 @@ import router from './router'
 // import Vant from 'vant'
 // import 'vant/lib/vant-css/index.css'
 // Vue.use(Vant)
-import { Button, Row, Col, Swipe, SwipeItem, Lazyload } from "vant";
+import { Button, Row, Col, Swipe, SwipeItem, Lazyload, lList, List } from "vant";
 
-Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload)
+Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List)
 
 Vue.config.productionTip = false
 

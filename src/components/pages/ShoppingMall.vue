@@ -63,6 +63,21 @@
     <floorComponent :floorData="floor1" :floor-title="floorName.floor1"></floorComponent>
     <floorComponent :floorData="floor2" :floor-title="floorName.floor2"></floorComponent>
     <floorComponent :floorData="floor3" :floor-title="floorName.floor3"></floorComponent>
+
+    <!-- 热卖 -->
+    <div class="hot-area">
+    <div class="hot-title">热卖商品</div>
+    <div class="hot-goods">
+        <van-list>
+            <van-row gutter="20">
+              <van-col span="12" v-for="(item,index) in hotGoods" :key="index">
+                  <goods-info :goodsImage="item.image" :goodsName="item.name" :goodsPrice="item.price"></goods-info>
+              </van-col>
+            </van-row>
+        </van-list>
+    </div>
+    </div>
+
   </div>
 </template>
 
@@ -76,6 +91,7 @@ import swiperDefault3 from '../swiper/swiperDefault3.vue';
 import swiperText from '../swiper/swiperText';
 import floorComponent from '../component/floorComponent';
 import {toMoney} from '@/filter/moneyFilter.js'
+import goodsInfo from '../component/goodsInfoComponent'
 
 export default {
   data () {
@@ -92,7 +108,8 @@ export default {
       floor1:[],
       floor2:[],
       floor3:[],
-      floorName:{}
+      floorName:{},
+      hotGoods:[]
     };
   },
 
@@ -111,6 +128,7 @@ export default {
       this.floor2 = response.data.data.floor2;
       this.floor3 = response.data.data.floor3;
       this.floorName = response.data.data.floorName;
+      this.hotGoods = response.data.data.hotGoods;
 
     })
     .catch(error=>{
@@ -121,7 +139,8 @@ export default {
   components: {
     swiper,
     swiperSlide,
-    floorComponent
+    floorComponent,
+    goodsInfo
   },
 
   filters:{
@@ -201,5 +220,20 @@ export default {
     font-size: 12px;
     text-align: center;
   }
-
+  .hot-area{
+    background-color: #fff;
+  }
+  .hot-title{
+    color: #e5017d;
+    font-size: 14px;
+    text-align: center;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    border-bottom: 1px solid #eee;
+  }
+  .hot-goods {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 </style>
