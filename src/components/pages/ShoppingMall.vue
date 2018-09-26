@@ -92,7 +92,7 @@ import swiperText from '../swiper/swiperText';
 import floorComponent from '../component/floorComponent';
 import {toMoney} from '@/filter/moneyFilter.js'
 import goodsInfo from '../component/goodsInfoComponent'
-
+import url from '../../serviceAPI.config'
 export default {
   data () {
     return {
@@ -115,7 +115,7 @@ export default {
 
   created(){
     axiso({
-      url:"https://www.easy-mock.com/mock/5baa3963afd56b7fe77cc9b4/smilvue/home",
+      url:url.getShopingMallInfo,
       method:'get'
     })
     .then((response) => {
