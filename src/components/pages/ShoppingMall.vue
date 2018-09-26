@@ -60,27 +60,9 @@
     <!-- <swiperText></swiperText> -->
 
     <!-- 楼层 -->
-    <div class="floor">
-      <div class="floor-anomaly">
-        <div class="floor-one">
-          <img :src="floor1_0.image" width="100%">
-        </div>
-        <div>
-            <div class="floor-two">
-              <img :src="floor1_1.image" width="100%">
-            </div>
-            <div>
-              <img :src="floor1_2.image" width="100%">
-            </div>
-        </div>
-      </div>
-
-       <div class="floor-rule">
-          <div v-for="(item, index) in floor1.slice(3)" :key="index">
-            <img :src="item.image" width="100%">
-          </div>
-        </div>
-    </div>
+    <floorComponent :floorData="floor1" :floor-title="floorName.floor1"></floorComponent>
+    <floorComponent :floorData="floor2" :floor-title="floorName.floor2"></floorComponent>
+    <floorComponent :floorData="floor3" :floor-title="floorName.floor3"></floorComponent>
   </div>
 </template>
 
@@ -92,6 +74,7 @@ import swiperDefault from '../swiper/swiperDefault.vue';
 import swiperDefault2 from '../swiper/swiperDefault2.vue';
 import swiperDefault3 from '../swiper/swiperDefault3.vue';
 import swiperText from '../swiper/swiperText';
+import floorComponent from '../component/floorComponent';
 export default {
   data () {
     return {
@@ -105,9 +88,9 @@ export default {
         slidesPerView:3
       },
       floor1:[],
-      floor1_0:{},
-      floor1_1:{},
-      floor1_2:{},
+      floor2:[],
+      floor3:[],
+      floorName:{}
     };
   },
 
@@ -123,9 +106,10 @@ export default {
       this.bannerPicArray = response.data.data.slides;
       this.recommendGoods = response.data.data.recommend;
       this.floor1 = response.data.data.floor1;
-      this.floor1_0 = response.data.data.floor1[0];
-      this.floor1_1 = response.data.data.floor1[1];
-      this.floor1_2 = response.data.data.floor1[2];
+      this.floor2 = response.data.data.floor2;
+      this.floor3 = response.data.data.floor3;
+      this.floorName = response.data.data.floorName;
+
     })
     .catch(error=>{
       console.log(error)
@@ -135,10 +119,7 @@ export default {
   components: {
     swiper,
     swiperSlide,
-    swiperDefault,
-    swiperDefault2,
-    swiperDefault3,
-    swiperText
+    floorComponent
   }
   // computed: {},
 
@@ -212,36 +193,5 @@ export default {
     font-size: 12px;
     text-align: center;
   }
-  .floor-anomaly{
-    display: flex;
-    flex-direction: row;
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
-  }
-  .floor-anomaly div{
-    width: 10rem;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  .floor-one{
-    border-right: 1px solid #ccc;
-  }
-   .floor-two{
-    border-bottom: 1px solid #ccc;
-  }
-  .floor-rule{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background-color: #fff;
-  }
-  .floor-rule div{
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 10rem;
-    border-bottom: 1px solid #ddd;
-  }
-  .floor-rule div:nth-child(odd){
-    border-right: 1px solid #ddd;
-  }
+
 </style>
