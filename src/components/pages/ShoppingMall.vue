@@ -48,7 +48,7 @@
             <div class="recommend-item">
               <img :src="item.image" width="80%">
               <div>{{item.name}}</div>
-              <div>${{item.price}}(${{item.mallPrice}})</div>
+              <div>${{item.price | moneyFilter}}(${{item.mallPrice | moneyFilter}})</div>
             </div>
           </swiper-slide>
         </swiper>
@@ -75,6 +75,8 @@ import swiperDefault2 from '../swiper/swiperDefault2.vue';
 import swiperDefault3 from '../swiper/swiperDefault3.vue';
 import swiperText from '../swiper/swiperText';
 import floorComponent from '../component/floorComponent';
+import {toMoney} from '@/filter/moneyFilter.js'
+
 export default {
   data () {
     return {
@@ -120,6 +122,12 @@ export default {
     swiper,
     swiperSlide,
     floorComponent
+  },
+
+  filters:{
+    moneyFilter(money){
+      return toMoney(money);
+    }
   }
   // computed: {},
 
