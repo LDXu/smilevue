@@ -84,4 +84,28 @@ router.get('/insterCategorysub',async(ctx)=>{
   ctx.body="开启导入子类分类数据"
 })
 
+//商品列表
+router.get('/getGoodsList',async(ctx)=>{
+
+})
+
+//商品详情数据
+router.post('/getDetailGoodsInfo',async(ctx)=>{
+  let goodsId = ctx.request.body.goodsId
+  console.log(goodsId)
+  const Goods = mongoose.model('Goods')
+  await Goods.findOne({ID:goodsId}).exec().then(async(result) => {
+    ctx.body={
+      code:200,
+      message:result
+    }
+  }).catch((err) => {
+    console.log(err);
+    ctx.body={
+      code:500,
+      message:err
+    }
+  });
+})
+
 module.exports=router;
