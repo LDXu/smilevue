@@ -84,11 +84,6 @@ router.get('/insterCategorysub',async(ctx)=>{
   ctx.body="开启导入子类分类数据"
 })
 
-//商品列表
-router.get('/getGoodsList',async(ctx)=>{
-
-})
-
 //商品详情数据
 router.post('/getDetailGoodsInfo',async(ctx)=>{
   let goodsId = ctx.request.body.goodsId
@@ -108,4 +103,78 @@ router.post('/getDetailGoodsInfo',async(ctx)=>{
   });
 })
 
+// //商品详情数据
+// router.post('/getDetailGoodsInfo',async(ctx)=>{
+//   try {
+//     let goodsId = ctx.request.body.goodsId
+//     console.log(goodsId)
+//     const Goods = mongoose.model('Goods')
+//     let result = await Goods.findOne({ID:goodsId}).exec()
+//     ctx.body={
+//       code:200,
+//       message:result
+//     }
+//   } catch (errOR) {
+//     console.log(error);
+//     ctx.body={
+//       code:500,
+//       message:error
+//     }
+//   }
+// })
+//获取大类
+router.get('/getCategoryList',async(ctx)=>{
+  try {
+    const Category = mongoose.model('Category')
+    let result = await Category.find({}).exec()
+    ctx.body={
+      code:200,
+      message:result
+    }
+  } catch (errOR) {
+    console.log(error);
+    ctx.body={
+      code:500,
+      message:error
+    }
+  }
+})
+
+//获取小类
+router.post('/getCategorySubList',async(ctx)=>{
+  try {
+    let CategoryId = ctx.request.body.categoryId
+    const CategorySub = mongoose.model('CategorySub')
+    let result = await CategorySub.find({MALL_CATEGORY_ID:CategoryId}).exec()
+    ctx.body={
+      code:200,
+      message:result
+    }
+  } catch (errOR) {
+    console.log(error);
+    ctx.body={
+      code:500,
+      message:error
+    }
+  }
+})
+
+//商品列表
+router.post('/getGoodsListByCategoryId',async(ctx)=>{
+  try {
+    let CategoryId = ctx.request.body.categoryId
+    const Goods = mongoose.model('Goods')
+    let result = await Goods.findOne({SUB_ID:CategoryId}).exec()
+    ctx.body={
+      code:200,
+      message:result
+    }
+  } catch (error) {
+    console.log(error);
+    ctx.body={
+      code:500,
+      message:error
+    }
+  }
+})
 module.exports=router;
