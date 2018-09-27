@@ -11,6 +11,8 @@ const userSchema = new Schema({
   passWord: String,
   createAt:{type:Date, default:Date.now()},
   lastLoginAt:{type:Date, default:Date.now()}
+},{
+  collection:'user'
 })
 userSchema.pre('save', function(next){
   bcrypt.genSalt(SALF_WORK_FACTOR,)
