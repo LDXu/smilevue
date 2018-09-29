@@ -5,7 +5,7 @@
     <div class="search-bar">
       <van-row>
         <van-col span="3">
-          <img :src="locationIcon" width="70%" class="location-icon">
+          <img :src="locationIcon" width="70%" class="localStorage-icon">
         </van-col>
         <van-col span="16">
           <input type="text" class="search-input">
@@ -173,7 +173,7 @@ export default {
     background-color: #e5017d;
     color:#fff
   }
-  .location-icon{
+  .localStorage-icon{
     padding-top: .2rem;
     padding-left: .3rem;
   }
@@ -198,8 +198,8 @@ export default {
     text-align: center;
   }
   .type-bar div img{
-    width: 66px;
-    height: 66px;
+    /* width: 66px;
+    height: 66px; */
   }
   .recommend-area{
     background-color: #fff;
@@ -235,5 +235,8 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+  }
+  .type-bar div{
+    flex: 1;
   }
 </style>

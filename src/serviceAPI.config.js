@@ -8,7 +8,7 @@ const URL ={
   getDetailGoodsInfo: LOCALURL+'goods/getDetailGoodsInfo',
   getCategoryList: LOCALURL+'goods/getCategoryList',
   getCategorySubByCategoryId: LOCALURL+'goods/getCategorySubList',
-  getGoodsListByCategoryId: LOCALURL+'goods/getGoodsListByCategoryId',
+  getGoodsListByCategorySubId: LOCALURL+'goods/getGoodsListByCategorySubId',
 }
 
 module.exports = URL;
