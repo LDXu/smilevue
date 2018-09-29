@@ -1,5 +1,6 @@
 # smilevue
-
+技术胖vue项目练习
+参考http://jspang.com/post/vue-koa.html
 > A Vue.js project
 
 ## Build Setup
