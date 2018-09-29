@@ -22,6 +22,14 @@
 
               </van-tab>
             </van-tabs>
+
+            <div id="list-div">
+              <van-list v-model="loading" :finished="finished" @load="onLoad">
+                <div class="list-item" v-for="item in list" :key="item">
+                  {{item}}
+                </div>
+              </van-list>
+            </div>
           </div>
         </van-col>
       </van-row>
@@ -40,7 +48,10 @@
         category: [],
         categorysub: [],
         categoryActiceIndex:0,
-        active:0
+        active:0,
+        loading:false,//能否刷新
+        finished:false,//上拉加载是否有数据
+        list:[],//商品数据
       }
     },
     created(){
@@ -87,11 +98,26 @@
         console.log(categoryId)
         this.categoryActiceIndex=index
         this.getCategorySubByCategoryId(categoryId)
+      },
+      //上拉加载方法
+      onLoad(){
+        //这边不是箭头函数的话，this指向不对
+        setTimeout(()=>{
+          // body
+          for (let i = 0; i < 10; i++) {
+            this.list.push(this.list.length+1)
+          }
+          this.loading=false;
+          if(this.list.length>=40){
+            this.finished=true;
+          }
+        }, 500);
       }
     },
     mounted() {
-      let winHeight = document.documentElement.clientHeight - 46;
-      document.getElementById('leftNav').style.height=winHeight+'px'
+      let winHeight = document.documentElement.clientHeight;
+      document.getElementById('leftNav').style.height=winHeight -46 +'px'
+      document.getElementById('list-div').style.height=winHeight - 90 +'px'
     },
   }
 </script>
@@ -109,5 +135,14 @@
 }
 .categoryActice{
   background-color: white;
+}
+#list-div{
+  overflow: scroll;
+}
+.list-item{
+  text-align: center;
+  line-height: 5rem;
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #fff
 }
 </style>
