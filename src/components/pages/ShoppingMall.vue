@@ -235,6 +235,9 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    height: 130rem;
+    overflow: hidden;
+    background-color: white;
   }
   .type-bar div{
     flex: 1;
